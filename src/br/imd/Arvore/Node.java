@@ -1,36 +1,37 @@
 package br.imd.Arvore;
 
-import br.imd.Agenda.Pessoa;
-
 public class Node<T> {
-	private Node l;
-	private Node r;
+	private Node<T> l;
+	private Node<T> r;
 	private T obj;
 
 	public Node(T obj) {
-		this.l = null;
-		this.r = null;
+		this.l = new Node<T>(null);
+		this.r = new Node<T>(null);
 		this.obj = obj;
 	}
-	
-	public T getConteudo(){
-        return this.obj;
+
+	public T getConteudo() {
+		return this.obj;
 	}
-	
-	public Node getLeft(){
-	    return this.l;
+
+	public void setConteudo(T obj) {
+		this.obj = obj;
 	}
-	
-	public Node getRight(){
-	    return this.r;
+
+	public Node<T> getLeft() {
+		return this.l;
 	}
-	
-	public void setLeft(Node newNode){
-	    this.l = newNode;
+
+	public Node<T> getRight() {
+		return this.r;
 	}
-	
-	public void setRight(Node newNode){
-	    this.r = newNode;
+
+	public void setLeft(Node<T> newNode) {
+		this.l = newNode;
+	}
+
+	public void setRight(Node<T> newNode) {
+		this.r = newNode;
 	}
 };
-    
