@@ -4,7 +4,7 @@ public class TADArvore {
 	private Node raiz;
 
 	public void inserir(Node n) {
-
+		
 	}
 
 	public void buscarLargura(Node n) {

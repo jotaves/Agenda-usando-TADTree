@@ -17,8 +17,9 @@ public class Pessoa {
 	}
 	
 	//TODO
-	public int calcularAniversario() {
-		
+	public int getIdade() {
+		LocalDate now = LocalDate.now();
+		return aniversario.get
 	}
 	
 	public String getNome() {
