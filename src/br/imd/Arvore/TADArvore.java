@@ -2,7 +2,7 @@ package br.imd.Arvore;
 
 import br.imd.Agenda.Pessoa;
 
-public class TADArvore{
+public class TADArvore<T>{
 	private Node<T> raiz;
 
 	public void inserir(Node<T> n) {
@@ -33,19 +33,46 @@ public class TADArvore{
         else if(compR > 0 && pai.getRight() != null){
             inserir(pai.getLeft(), n);
         }
-        // top! topissimo! topper!
 	}
 
-	public void buscarLargura(Node<T> n) {
+	public int buscarLargura(T obj) {
         
+        
+        return 0;
 	}
 
-	public void buscarProfundidade(Node<T> n) {
-        
+	public int buscarProfundidadePosicao(T obj) {
+        return this.buscarProfundidade(raiz, obj);
+	}
+	
+	private int buscarProfundidadePosicao(node<T>n, obj){
+	    int posicao = 0;
+	    if(n.getConteudo() == obj){
+	        return posicao++;
+	    }
+	    else{
+	        posicao ++;
+	        this.buscarProfundidadePosicao(raiz.getLeft(), obj);
+	        this.buscarProfundidadePosicao(raiz.getRight(), obj);
+	    }
+	}
+	
+	public T buscarProfundidadeObj(T obj) {
+        return this.buscarProfundidadeObj(raiz, obj);
+	}
+	
+	private T buscarProfundidadeObj(Node<T> n, T obj){
+	    if(n.getConteudo().compareTo(obj)){
+	        return n.getConteudo();
+	    }
+	    else{
+	        this.buscarProfundidadeObj(n.getLeft(), obj);
+	        this.buscarProfundidadeObj(n.getRight(), obj);
+	    }
 	}
 
 	public void remover(Node<T> n) {
-        
+        buscarProfundidadeObj(n);
 	}
 	
 	public int getProfundidade(Node<T> n){
