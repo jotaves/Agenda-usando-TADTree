@@ -6,8 +6,8 @@ public class Node<T> {
 	private T obj;
 
 	public Node(T obj) {
-		this.l = new Node<T>(null);
-		this.r = new Node<T>(null);
+		this.l = null;
+		this.r = null;
 		this.obj = obj;
 	}
 

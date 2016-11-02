@@ -16,10 +16,9 @@ public class Pessoa {
 		this.aniversario = aniversario;
 	}
 	
-	//TODO
 	public int getIdade() {
 		LocalDate now = LocalDate.now();
-		return aniversario.get
+		return now.getYear() - aniversario.getYear();
 	}
 	
 	public String getNome() {
@@ -49,8 +48,8 @@ public class Pessoa {
 
 	@Override
 	public String toString() {
-		return "Pessoa [nome=" + nome + ", telefone=" + telefone + ", cpf=" + cpf + ", aniversario=" + aniversario
-				+ "]";
+		return "[nome=" + nome + ", telefone=" + telefone + ", cpf=" + cpf + ", aniversario=" + aniversario
+				+ "]\n";
 	}
 	
 	
