@@ -16,6 +16,11 @@ public class Pessoa {
 		this.aniversario = aniversario;
 	}
 	
+	//TODO
+	public int calcularAniversario() {
+		
+	}
+	
 	public String getNome() {
 		return nome;
 	}
