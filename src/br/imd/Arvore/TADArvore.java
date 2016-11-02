@@ -1,30 +1,30 @@
 package br.imd.Arvore;
 
 public class TADArvore {
-	private No raiz;
+	private Node raiz;
 
-	public void inserir(No n) {
-
-	}
-
-	public void buscarLargura(No n) {
+	public void inserir(Node n) {
 
 	}
 
-	public void buscarProfundidade(No n) {
+	public void buscarLargura(Node n) {
 
 	}
 
-	public void remover(No n) {
+	public void buscarProfundidade(Node n) {
+
+	}
+
+	public void remover(Node n) {
 
 	}
 	
-	public int getProfundidade(No n){
+	public int getProfundidade(Node n){
 		return 0;
 		
 	}
 	
-	public int getAltura(No n){
+	public int getAltura(Node n){
 		return 0;
 		
 	}
