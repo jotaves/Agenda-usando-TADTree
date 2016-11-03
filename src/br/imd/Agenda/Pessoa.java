@@ -54,7 +54,6 @@ public class Pessoa implements Comparable<Pessoa> {
 				+ "]\n";
 	}
 
-	@Override
 	public int compareTo(Pessoa p) {
 		return this.getNome().compareToIgnoreCase(p.getNome());
 	}
