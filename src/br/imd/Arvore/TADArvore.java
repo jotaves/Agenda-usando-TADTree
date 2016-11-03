@@ -68,6 +68,23 @@ public class TADArvore<T extends Comparable<T>>{
 	    }
 	}
 	
+	public Node<T> buscarArvore(T obj) {
+			return this.buscarArvore(raiz, obj);
+	}
+	
+	private Node<T> buscarArvore(Node<T> n, T obj){
+			if (n == null) return null;
+
+			int compR = n.getConteudo().compareTo(obj);
+			
+			if (compR == 0) return n;
+			if (compR > 0)
+				return buscarArvore(n.getLeft(), obj);
+			if (compR < 0)
+				return buscarArvore(n.getRight(), obj);
+			else return null;
+	}	
+	
 	public Node<T> buscarProfundidadeObj(T obj) {
         return this.buscarProfundidadeObj(raiz, obj);
 	}
