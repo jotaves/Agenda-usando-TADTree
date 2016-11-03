@@ -155,7 +155,7 @@ public class TADArvore<T extends Comparable<T>> {
 		if (obj.compareTo(rm.getConteudo()) != 0)
 			return;
 
-		if (rm.getLeft() == null && rm.getRight() == null) {
+		else if (rm.getLeft() == null && rm.getRight() == null) {
 			compR = pai.getConteudo().compareTo(rm.getConteudo());
 			if (compR < 0) {
 				pai.setRight(null);
@@ -163,7 +163,7 @@ public class TADArvore<T extends Comparable<T>> {
 				pai.setLeft(null);
 		}
 		
-		if ((rm.getLeft() == null && rm.getRight() != null)) {
+		else if ((rm.getLeft() == null && rm.getRight() != null)) {
 			compR = pai.getConteudo().compareTo(rm.getConteudo());
 			if (compR < 0) {
 				pai.setRight(rm.getRight());
@@ -171,12 +171,17 @@ public class TADArvore<T extends Comparable<T>> {
 				pai.setLeft(rm.getRight());
 		}
 		
-		if (rm.getLeft() != null && rm.getRight() == null) {
+		else if (rm.getLeft() != null && rm.getRight() == null) {
 			compR = pai.getConteudo().compareTo(rm.getConteudo());
 			if (compR < 0) {
 				pai.setRight(rm.getLeft());
 			} else
 				pai.setLeft(rm.getLeft());
+		}
+		else {
+			T subs = this.getMenor(rm.getRight()).getConteudo();
+			this.remover(subs);
+			rm.setConteudo(subs);
 		}
 		
 	}
@@ -236,6 +241,15 @@ public class TADArvore<T extends Comparable<T>> {
 	}
 
 	public Node<T> getMenor() {
+		Node<T> n = this.raiz;
+
+		while (n.getLeft() != null) {
+			n = n.getLeft();
+		}
+
+		return n;
+	}
+	private Node<T> getMenor(Node<T> raiz) {
 		Node<T> n = raiz;
 
 		while (n.getLeft() != null) {

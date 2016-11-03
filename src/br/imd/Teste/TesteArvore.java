@@ -21,6 +21,9 @@ public class TesteArvore {
 		l.inserir(new Pessoa("Pedro", "3216-5498", "123456789-12", LocalDate.of(1990, 12, 15)));
 		l.inserir(new Pessoa("Joao", "3216-5498", "123456789-12", LocalDate.of(1990, 12, 15)));
 		l.inserir(new Pessoa("Charles", "3216-5498", "123456789-12", LocalDate.of(1990, 12, 15)));
+		l.inserir(new Pessoa("Maria", "3216-5498", "123456789-12", LocalDate.of(1990, 12, 15)));
+		l.inserir(new Pessoa("Azealia", "3216-5498", "123456789-12", LocalDate.of(1990, 12, 15)));
+		l.inserir(new Pessoa("Angenor", "3216-5498", "123456789-12", LocalDate.of(1990, 12, 15)));
 	}
 
 	@Test
@@ -79,6 +82,14 @@ public class TesteArvore {
 		
 		l.imprimirPre();
 		
+		Node<Pessoa> pessoa2 = new Node<Pessoa>(
+				new Pessoa("Joao", "3216-5498", "123456789-12", LocalDate.of(1990, 12, 15)));
+		l.remover(pessoa1.getConteudo());
+		//System.out.println(l.buscarArvore(pessoa.getConteudo()).getConteudo().getNome());
+		assertEquals(null, l.buscarArvore(pessoa.getConteudo()));
+		
+		l.imprimirPre();
+		
 	}
 
 	@Test
@@ -104,17 +115,17 @@ public class TesteArvore {
 		Node<Pessoa> pessoa1 = new Node<Pessoa>(
 				new Pessoa("Pedro", "3216-5498", "123456789-12", LocalDate.of(1990, 12, 15)));
 		int h = l.getAltura(pessoa1);
-		assertEquals(1, h);
+		assertEquals(2, h);
 		
 		Node<Pessoa> pessoa2 = new Node<Pessoa>(
 				new Pessoa("Borges", "3216-5498", "123456789-12", LocalDate.of(1990, 12, 15)));
 		h = l.getAltura(pessoa2);
-		assertEquals(2, h);
+		assertEquals(3, h);
 		
 		Node<Pessoa> pessoa = new Node<Pessoa>(
 				new Pessoa("Joao", "3216-5498", "123456789-12", LocalDate.of(1990, 12, 15)));
 		h = l.getAltura(pessoa);
-		assertEquals(0, h);
+		assertEquals(1, h);
 
 		
 	}
@@ -122,7 +133,7 @@ public class TesteArvore {
 	@Test
 	public void testGetMenor() {
 		Pessoa p = l.getMenor().getConteudo();
-		assertEquals("Antonio", p.getNome());
+		assertEquals("Angenor", p.getNome());
 	}
 
 	@Test
