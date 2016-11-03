@@ -18,7 +18,6 @@ public class Pessoa implements Comparable<Pessoa> {
 		this.aniversario = aniversario;
 	}
 	
-	//TODO
 	public int getIdade() {
 		LocalDate now = LocalDate.now();
 		return now.getYear() - aniversario.getYear();
