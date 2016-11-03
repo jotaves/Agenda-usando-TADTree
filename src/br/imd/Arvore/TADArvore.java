@@ -1,79 +1,96 @@
 package br.imd.Arvore;
 
-import br.imd.Agenda.Pessoa;
-
-public class TADArvore<T> {
+public class TADArvore<T extends Comparable<T>>{
 	private Node<T> raiz;
+	
+	public TADArvore() {
+		this.raiz = null;
+	}
 
-	public void inserir(Node<T> n) {
-		if (raiz.getConteudo() == null) {
-			this.raiz = n;
-			return;
-		} else {
+	public void inserir(T t) {
+		Node<T> n = new Node<T>(t);
+		
+		if (raiz == null) {
+	        this.raiz = n;
+		}
+		else{
 			this.inserir(raiz, n);
 		}
 	}
+	
+	private void inserir(Node<T> pai, Node<T> n){
+		// modificado
+        int compR = n.getConteudo().compareTo(pai.getConteudo());
 
-	private void inserir(Node<T> pai, Node<T> n) {
-		int compR = ((Pessoa) n.getConteudo()).getNome().compareToIgnoreCase(((Pessoa) pai.getConteudo()).getNome());
+        if(compR < 0 && pai.getLeft() == null){
+            pai.setLeft(n);
+        }
+        
+        else if(compR < 0 && pai.getLeft() != null){
+            inserir(pai.getLeft(), n);
+        }
+        
+        else if(compR > 0 && pai.getRight() == null){
+            pai.setRight(n);
+        }
 
-		if (compR < 0 && pai.getLeft() == null) {
-			pai.setLeft(n);
-		}
-
-		else if (compR < 0 && pai.getLeft() != null) {
-			inserir(pai.getLeft(), n);
-		}
-
-		else if (compR > 0 && pai.getRight() == null) {
-			pai.setRight(n);
-		}
-
-		else if (compR > 0 && pai.getRight() != null) {
-			inserir(pai.getLeft(), n);
-		}
+        else if(compR > 0 && pai.getRight() != null){
+            inserir(pai.getRight(), n);
+        }
 	}
 
 	public int buscarLargura(T obj) {
-
-		return 0;
+        
+        
+        return 0;
 	}
 
 	public int buscarProfundidadePosicao(T obj) {
-		return this.buscarProfundidadePosicao(raiz, obj);
+		if (raiz == null) return -1;
+		int posicao = 0;
+        buscarProfundidadePosicao(raiz, obj, posicao);
+        return posicao;
 	}
-
-	private int buscarProfundidadePosicao(Node<T> n, T obj){
-	    int posicao = 0;
+	
+	private int buscarProfundidadePosicao(Node<T> n, T obj, int posicao){
 	    if(n.getConteudo() == obj){
-	        return posicao++;
+	    	System.out.println();
+	        return posicao;
 	    }
 	    else{
-	        posicao ++;
-	        this.buscarProfundidadePosicao(raiz.getLeft(), obj);
-	        this.buscarProfundidadePosicao(raiz.getRight(), obj);
+	    	if (n.getLeft() != null) {
+	    		buscarProfundidadePosicao(n.getLeft(), obj, ++posicao);
+	    	}
+	    	if (n.getRight() != null) {
+	    		buscarProfundidadePosicao(n.getRight(), obj, ++posicao);
+	    	}
+	    	return posicao;
 	    }
-		return -1;
 	}
-
-	public T buscarProfundidadeObj(T obj) {
-		return this.buscarProfundidadeObj(raiz, obj);
+	
+	public Node<T> buscarProfundidadeObj(T obj) {
+        return this.buscarProfundidadeObj(raiz, obj);
 	}
-
-	private T buscarProfundidadeObj(Node<T> n, T obj) {
-		if (n.getConteudo() == obj) {
-			return n.getConteudo();
-		} else {
-			this.buscarProfundidadeObj(n.getLeft(), obj);
-			this.buscarProfundidadeObj(n.getRight(), obj);
-		}
+	
+	private Node<T> buscarProfundidadeObj(Node<T> n, T obj){
+		Node<T> buscado = new Node<T>(obj);
+		
+	    if(n.getConteudo().compareTo(buscado.getConteudo()) == 0){
+	        return n;
+	    }
+	    else{
+	        this.buscarProfundidadeObj(n.getLeft(), obj);
+	        this.buscarProfundidadeObj(n.getRight(), obj);
+	    }
+	    
+	    // não encontrou
 		return null;
 	}
 
-	public void remover(Node<T> n) {
-		// buscarProfundidadeObj(n);
+	public void remover(T obj) {
+        
 	}
-
+	
 	public int getProfundidade(Node<T> n){
 	    int prof = 0;
 		if(this.raiz == n){
@@ -81,10 +98,9 @@ public class TADArvore<T> {
 		}
 		
 		Node<T> certo = raiz;
-		int compR = 0;
 		
 		while(certo != n){
-			compR = ((Pessoa) n.getConteudo()).getNome().compareToIgnoreCase(((Pessoa) certo.getConteudo()).getNome());
+		    int compR = n.getConteudo().compareTo(certo.getConteudo());
 	        
 	        if(compR < 0) {
 	            certo = certo.getLeft();
@@ -98,67 +114,68 @@ public class TADArvore<T> {
 		
 		return prof;
 	}
-
-	public int getAltura(Node<T> n) {
-		if (n == null) {
-			return -1;
-		} else {
-			// altura da sub-árvore esquerda
-			int ae = getAltura(n.getLeft());
-			// altura da sub-árvore direita
-			int ad = getAltura(n.getRight());
-
-			// retorna a maior altura entre as sub-árvores
-			if (ae < ad)
-				return ad + 1;
-			else
-				return ae + 1;
-		}
+	
+	public int getAltura(Node<T> n){
+	    if (n == null) {
+	        return -1;
+	    }
+	    else {
+	        // altura da sub-árvore esquerda
+	        int ae = getAltura(n.getLeft());
+	        // altura da sub-árvore direita
+	        int ad = getAltura(n.getRight());
+	        
+	        // retorna a maior altura entre as sub-árvores
+	        if (ae < ad) return ad + 1;
+	        else return ae + 1;
+	    }
 	}
-
-	public Node<T> getMenor() {
-		Node<T> n = raiz;
-
-		while (n.getLeft().getConteudo() != null) {
-			n = n.getLeft();
-		}
-
+	
+	public Node<T> getMenor(){
+	    Node<T> n = raiz;
+	    
+	    while (n.getLeft().getConteudo() != null) {
+	        n = n.getLeft();
+	    }
+	    
 		return n;
 	}
-
-	public Node<T> getMaior() {
-		Node<T> n = raiz;
-
-		while (n.getRight().getConteudo() != null) {
-			n = n.getRight();
-		}
-
+	
+	public Node<T> getMaior(){
+	    Node<T> n = raiz;
+	    
+	    while (n.getRight().getConteudo() != null) {
+	        n = n.getRight();
+	    }
+	    
 		return n;
 	}
-
+	
 	private void imprimirPre(Node<T> n) {
-		if (n.getConteudo() != null) {
-			System.out.println("\t" + n.getConteudo());
-			imprimirPre(n.getLeft());
-			imprimirPre(n.getRight());
-		}
+	    if(n != null) {
+	        System.out.print("\t" + n.getConteudo());
+		    imprimirPre(n.getLeft());
+		    imprimirPre(n.getRight());
+	    }
 	}
-
-	public void imprimirPre() {
-		System.out.println("Arvore em pré-fixo: \n");
-		imprimirPre(raiz);
+	
+	public void imprimirPre(){
+	    System.out.print("Arvore em pré-fixo: [\n");
+	    	imprimirPre(raiz);
+	    System.out.println("\n]");
 	}
-
-	public void imprimirPos() {
-		System.out.println("Arvore em pos-fixo: \n");
-		this.imprimirPos(raiz);
+	
+	public void imprimirPos(){
+		System.out.print("Arvore em pós-fixo: [\n");
+			imprimirPos(raiz);
+		System.out.println("\n]");
 	}
-
+	
 	private void imprimirPos(Node<T> n){
-	    if(n.getConteudo() != null){
-	         System.out.println("\t" + n.getConteudo());
-	         imprimirPos(n.getRight());
+	    if(n != null){
 	         imprimirPos(n.getLeft());
+	         imprimirPos(n.getRight());    
+	         System.out.print("\t" + n.getConteudo());
 	    }
 	}
 }

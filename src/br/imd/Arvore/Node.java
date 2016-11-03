@@ -4,6 +4,12 @@ public class Node<T> {
 	private Node<T> l;
 	private Node<T> r;
 	private T obj;
+	
+	public Node() {
+		this.l = null;
+		this.r = null;
+		this.obj = null;		
+	}
 
 	public Node(T obj) {
 		this.l = null;

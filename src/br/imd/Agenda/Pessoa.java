@@ -1,12 +1,14 @@
 package br.imd.Agenda;
-
 import java.time.LocalDate;
 
-public class Pessoa {
+public class Pessoa implements Comparable<Pessoa> {
 	private String nome;
 	private String telefone;
 	private String cpf;
 	private LocalDate aniversario;
+	
+	public Pessoa() {
+	}
 	
 	public Pessoa(String nome, String telefone, String cpf, LocalDate aniversario) {
 		super();
@@ -16,6 +18,7 @@ public class Pessoa {
 		this.aniversario = aniversario;
 	}
 	
+	//TODO
 	public int getIdade() {
 		LocalDate now = LocalDate.now();
 		return now.getYear() - aniversario.getYear();
@@ -48,9 +51,13 @@ public class Pessoa {
 
 	@Override
 	public String toString() {
-		return "[nome=" + nome + ", telefone=" + telefone + ", cpf=" + cpf + ", aniversario=" + aniversario
+		return "Pessoa [nome=" + nome + ", telefone=" + telefone + ", cpf=" + cpf + ", aniversario=" + aniversario
 				+ "]\n";
 	}
-	
+
+	@Override
+	public int compareTo(Pessoa p) {
+		return this.getNome().compareToIgnoreCase(p.getNome());
+	}
 	
 }

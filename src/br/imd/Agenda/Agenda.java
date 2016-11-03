@@ -1,34 +1,43 @@
 package br.imd.Agenda;
+import br.imd.Arvore.TADArvore;
+import br.imd.Agenda.Pessoa;
 
-import br.imd.Arvore.*;
-
-public class Agenda<T>{
-	private TADArvore lista;
-
-	public Agenda() {
-		this.lista = new TADArvore();
+public class Agenda {
+	private TADArvore<Pessoa> lista;
+	
+	public Agenda () {
+		lista = new TADArvore<Pessoa>();
 	}
 
 	public void armazenaPessoa(Pessoa pessoa) {
-		this.lista.inserir(new Node<T>((T) pessoa));
+		lista.inserir(pessoa);
 	}
 
 	public void removePessoa(String nome) {
-		Pessoa busca = new Pessoa(nome, null, "", null);
-		Pessoa p = (Pessoa) lista.buscarProfundidadeObj(busca);
-		//lista.remover();// tem que enviar um nó
+		Pessoa p = new Pessoa();
+		p.setNome(nome);
+		
+		lista.remover(p);
 	}
 
 	public int buscarPessoa(String nome) {
+		Pessoa p = new Pessoa();
+		p.setNome(nome);
+		
+		// buscar p
 		return 0;
-
 	}
-
-	public void imprimirAgenda() {
-
+	
+	public void imprimirAgenda(){
+		lista.imprimirPre();
 	}
-
-	public void imprimirPessoa(String nome) {
-
+	
+	public void imprimirPessoa(String nome){
+		Pessoa p = new Pessoa();
+		p.setNome(nome);
+		
+		// buscar p
+		// se encontrou -> imprime atributos
+		// não encontrou -> retorna null/erro
 	}
 }
