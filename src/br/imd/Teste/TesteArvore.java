@@ -16,13 +16,15 @@ import br.imd.Arvore.TADArvore;
  * 
  * @author João Victor Bezerra Barboza
  * @author Pedro Arthur Medeiros Fernandes
- *
- * @param <T>
  */
 
 public class TesteArvore {
 	TADArvore<Pessoa> l = new TADArvore<Pessoa>();
 
+	/**
+	 * Adiciona Pessoas a árvore criada.
+	 * @throws Exception
+	 */
 	@Before
 	public void setUp() throws Exception {
 		l.inserir(new Pessoa("Borges", "3216-5498", "123456789-12", LocalDate.of(1990, 12, 15)));
@@ -35,6 +37,9 @@ public class TesteArvore {
 		l.inserir(new Pessoa("Angenor", "3216-5498", "123456789-12", LocalDate.of(1990, 12, 15)));
 	}
 
+	/**
+	 * Testa o método buscaLargura.
+	 */
 	@Test
 	public void testBuscarLargura() {
 		Node<Pessoa> pessoa = new Node<Pessoa>(
@@ -48,6 +53,9 @@ public class TesteArvore {
 		assertEquals("Pedro", p1.getConteudo().getNome());
 	}
 
+	/**
+	 * Testa o método buscarProfundidade.
+	 */
 	@Test
 	public void testBuscarProfundidade() {
 		Node<Pessoa> pessoa = new Node<Pessoa>(
@@ -61,6 +69,9 @@ public class TesteArvore {
 		assertEquals("Pedro", p1.getConteudo().getNome());
 	}
 
+	/**
+	 * Testa o método remover para todos os três casos.
+	 */
 	@Test
 	public void testRemover() {
 		Node<Pessoa> pessoa = new Node<Pessoa>(
@@ -91,6 +102,9 @@ public class TesteArvore {
 
 	}
 
+	/**
+	 * Testa o método getProfundidade para profundidades diferentes
+	 */
 	@Test
 	public void testGetProfundidade() {
 		Node<Pessoa> pessoa = new Node<Pessoa>(
@@ -109,6 +123,9 @@ public class TesteArvore {
 		assertEquals(0, p);
 	}
 
+	/**
+	 * Testa método getAltura para alturas diferentes.
+	 */
 	@Test
 	public void testGetAltura() {
 		Node<Pessoa> pessoa1 = new Node<Pessoa>(
@@ -128,23 +145,35 @@ public class TesteArvore {
 
 	}
 
+	/**
+	 * Testa o método getMenor.
+	 */
 	@Test
 	public void testGetMenor() {
 		Pessoa p = l.getMenor().getConteudo();
 		assertEquals("Angenor", p.getNome());
 	}
 
+	/**
+	 * testa o método getMaior.
+	 */
 	@Test
 	public void testGetMaior() {
 		Pessoa p = l.getMaior().getConteudo();
 		assertEquals("Pedro", p.getNome());
 	}
 
+	/**
+	 * Testa o método imprimirPre que imprime a árvore em pré-ordem.
+	 */
 	@Test
 	public void testImprimirPre() {
 		l.imprimirPre();
 	}
 
+	/**
+	 * Testa o método imprimirPos que imprime a árvore em pos-ordem.
+	 */
 	@Test
 	public void testImprimirPos() {
 		l.imprimirPos();
