@@ -22,7 +22,7 @@ public class TesteArvore {
 	TADArvore<Pessoa> l = new TADArvore<Pessoa>();
 
 	/**
-	 * Adiciona Pessoas a árvore criada.
+	 * Adiciona Pessoas à árvore criada.
 	 * @throws Exception
 	 */
 	@Before
