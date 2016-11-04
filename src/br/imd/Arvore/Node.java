@@ -10,16 +10,14 @@ public class Node<T> {
 	private Node<T> l;
 	private Node<T> r;
 	private T obj;
-	
+
 	public Node() {
 		this.l = null;
 		this.r = null;
-		this.obj = null;		
+		this.obj = null;
 	}
 
 	/**
-	 * @author Pedro Arthur Medeiros Ferandes
-	 * 
 	 * @param obj
 	 */
 	public Node(T obj) {
@@ -29,8 +27,6 @@ public class Node<T> {
 	}
 
 	/**
-	 * @author Pedro Arthur Medeiros Ferandes
-	 * 
 	 * @return
 	 */
 	public T getConteudo() {
@@ -38,8 +34,6 @@ public class Node<T> {
 	}
 
 	/**
-	 * @author Pedro Arthur Medeiros Ferandes
-	 * 
 	 * @param obj
 	 */
 	public void setConteudo(T obj) {
@@ -47,8 +41,6 @@ public class Node<T> {
 	}
 
 	/**
-	 * @author Pedro Arthur Medeiros Ferandes
-	 * 
 	 * @return
 	 */
 	public Node<T> getLeft() {
@@ -56,8 +48,6 @@ public class Node<T> {
 	}
 
 	/**
-	 * @author Pedro Arthur Medeiros Ferandes
-	 * 
 	 * @return
 	 */
 	public Node<T> getRight() {
@@ -65,8 +55,6 @@ public class Node<T> {
 	}
 
 	/**
-	 * @author Pedro Arthur Medeiros Ferandes
-	 * 
 	 * @param newNode
 	 */
 	public void setLeft(Node<T> newNode) {
@@ -74,8 +62,6 @@ public class Node<T> {
 	}
 
 	/**
-	 * @author Pedro Arthur Medeiros Ferandes
-	 * 
 	 * @param newNode
 	 */
 	public void setRight(Node<T> newNode) {

@@ -3,13 +3,26 @@ package br.imd.Arvore;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * 
+ * @author pedroarthur-mf
+ *
+ * @param <T>
+ */
 public class TADArvore<T extends Comparable<T>> {
 	private Node<T> raiz;
 
+	/**
+	 * 
+	 */
 	public TADArvore() {
 		this.raiz = null;
 	}
 
+	/**
+	 * 
+	 * @param t
+	 */
 	public void inserir(T t) {
 		Node<T> n = new Node<T>(t);
 
@@ -20,6 +33,11 @@ public class TADArvore<T extends Comparable<T>> {
 		}
 	}
 
+	/**
+	 * 
+	 * @param pai
+	 * @param n
+	 */
 	private void inserir(Node<T> pai, Node<T> n) {
 		// modificado
 		int compR = n.getConteudo().compareTo(pai.getConteudo());
@@ -35,6 +53,11 @@ public class TADArvore<T extends Comparable<T>> {
 		}
 	}
 
+	/**
+	 * 
+	 * @param obj
+	 * @return
+	 */
 	public Node<T> buscarLargura(T obj) {
 		if (obj == null || this.raiz == null) {
 			return null;
@@ -58,6 +81,11 @@ public class TADArvore<T extends Comparable<T>> {
 		return null;
 	}
 
+	/**
+	 * 
+	 * @param obj
+	 * @return
+	 */
 	public Node<T> buscarArvore(T obj) {
 		return this.buscarArvore(raiz, obj);
 	}
@@ -78,6 +106,11 @@ public class TADArvore<T extends Comparable<T>> {
 			return null;
 	}
 
+	/**
+	 * 
+	 * @param obj
+	 * @return
+	 */
 	public Node<T> buscarProfundidade(T obj) {
 		if (obj == null) {
 			return null;
@@ -93,6 +126,12 @@ public class TADArvore<T extends Comparable<T>> {
 		}
 	}
 
+	/**
+	 * 
+	 * @param n
+	 * @param obj
+	 * @return
+	 */
 	private Node<T> buscarProfundidade(Node<T> n, T obj) {
 		if (n == null)
 			return null;
@@ -106,6 +145,11 @@ public class TADArvore<T extends Comparable<T>> {
 		}
 	}
 
+	/**
+	 * 
+	 * @param obj
+	 * @return
+	 */
 	public Boolean remover(T obj) {
 		if (buscarArvore(obj) == null) {
 			return false;
@@ -168,6 +212,11 @@ public class TADArvore<T extends Comparable<T>> {
 
 	}
 
+	/**
+	 * 
+	 * @param n
+	 * @return
+	 */
 	public int getProfundidade(Node<T> n) {
 		// fazer busca para achar n na árvore e poder pegar os filhos
 		// se o resultado da busca for null, return -1
@@ -191,6 +240,12 @@ public class TADArvore<T extends Comparable<T>> {
 		}
 	}
 
+	/**
+	 * 
+	 * @param n
+	 * @param pai
+	 * @return
+	 */
 	private int getProfundidade(Node<T> n, Node<T> pai) {
 
 		int compR = n.getConteudo().compareTo(pai.getConteudo());
@@ -204,6 +259,11 @@ public class TADArvore<T extends Comparable<T>> {
 		}
 	}
 
+	/**
+	 * 
+	 * @param n
+	 * @return
+	 */
 	public int getAltura(Node<T> n) {
 		if (n == null) {
 			return -1;
@@ -223,6 +283,10 @@ public class TADArvore<T extends Comparable<T>> {
 		}
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public Node<T> getMenor() {
 		Node<T> n = this.raiz;
 
@@ -232,6 +296,11 @@ public class TADArvore<T extends Comparable<T>> {
 		return n;
 	}
 
+	/**
+	 * 
+	 * @param raiz
+	 * @return
+	 */
 	private Node<T> getMenor(Node<T> raiz) {
 		Node<T> n = raiz;
 
@@ -241,6 +310,10 @@ public class TADArvore<T extends Comparable<T>> {
 		return n;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public Node<T> getMaior() {
 		Node<T> n = raiz;
 
@@ -250,6 +323,10 @@ public class TADArvore<T extends Comparable<T>> {
 		return n;
 	}
 
+	/**
+	 * 
+	 * @param n
+	 */
 	private void imprimirPre(Node<T> n) {
 		if (n != null) {
 			System.out.print("\t" + n.getConteudo());
@@ -258,18 +335,28 @@ public class TADArvore<T extends Comparable<T>> {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public void imprimirPre() {
 		System.out.print("Arvore em pré-fixo: [\n");
 		imprimirPre(raiz);
 		System.out.println("]");
 	}
 
+	/**
+	 * 
+	 */
 	public void imprimirPos() {
 		System.out.print("Arvore em pós-fixo: [\n");
 		imprimirPos(raiz);
 		System.out.println("]");
 	}
 
+	/**
+	 * 
+	 * @param n
+	 */
 	private void imprimirPos(Node<T> n) {
 		if (n != null) {
 			imprimirPos(n.getLeft());
