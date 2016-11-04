@@ -35,11 +35,11 @@ public class Agenda {
 	 * 
 	 * @param nome Nome da pessoa que se deseja remover.
 	 */
-	public void removePessoa(String nome) {
+	public boolean removePessoa(String nome) {
 		Pessoa p = new Pessoa();
 		p.setNome(nome);
 
-		lista.remover(p);
+		return lista.remover(p);
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class Agenda {
 	 * @param nome Nome da Pessoa que se deseja buscar.
 	 * @return Profundidade do nó da pessoa na árvore.
 	 */
-	public int buscarPessoa(String nome) {
+	public int buscaPessoa(String nome) {
 		Node<Pessoa> p = new Node<Pessoa>(new Pessoa());
 		p.getConteudo().setNome(nome);
 
@@ -58,8 +58,8 @@ public class Agenda {
 	/**
 	 * Imprime os Itens da agenda em prdem pré-fixa.
 	 */
-	public void imprimirAgenda() {
-		lista.imprimirPre();
+	public void imprimeAgenda() {
+		lista.imprimirPos();
 	}
 
 	/**
@@ -67,11 +67,14 @@ public class Agenda {
 	 * 
 	 * @param nome O nome do da pessoa que deseja ser procurada
 	 */
-	public void imprimirPessoa(String nome) {
+	public void imprimePessoa(String nome) {
 		Node<Pessoa> p = new Node<Pessoa>(new Pessoa());
 		p.getConteudo().setNome(nome);
 		
-		System.out.println(this.lista.buscarProfundidade(p));
+		Node<Pessoa> r = lista.buscarProfundidade(p.getConteudo());
+		
+		if (r != null)
+			System.out.print(r.getConteudo());
 
 	}
 }

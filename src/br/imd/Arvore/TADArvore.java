@@ -93,7 +93,7 @@ public class TADArvore<T extends Comparable<T>> {
 	}
 
 	private Node<T> buscarArvore(Node<T> n, T obj) {
-		if (n == null)
+		if (n == null || raiz == null)
 			return null;
 
 		int compR = n.getConteudo().compareTo(obj);
@@ -114,7 +114,7 @@ public class TADArvore<T extends Comparable<T>> {
 	 * @return Nó do objeto que foi buscado ou null, caso não haja objeto
 	 */
 	public Node<T> buscarProfundidade(T obj) {
-		if (obj == null) {
+		if (obj == null || raiz == null) {
 			return null;
 		}
 		if (raiz.getConteudo().compareTo(obj) == 0) {
@@ -152,15 +152,12 @@ public class TADArvore<T extends Comparable<T>> {
 	 * @param obj Objeto a ser removido
 	 * @return True, se o objeto foi removido; false, se não
 	 */
-	public Boolean remover(T obj) {
-		if (buscarArvore(obj) == null) {
+	public boolean remover(T obj) {
+		if (obj == null || raiz == null || buscarArvore(obj) == null) {
 			return false;
 		}
 		Node<T> pai = raiz;
 		Node<T> rm = raiz;
-
-		if (obj == null)
-			return false;
 
 		int compR = obj.compareTo(pai.getConteudo());
 
@@ -174,11 +171,14 @@ public class TADArvore<T extends Comparable<T>> {
 		}
 
 		// elemento a ser removido não está na árvore
-		if (obj.compareTo(rm.getConteudo()) != 0)
+		if (obj.compareTo(rm.getConteudo()) != 0) 
 			return false;
 
 		else if (rm.getLeft() == null && rm.getRight() == null) {
 			compR = pai.getConteudo().compareTo(rm.getConteudo());
+			if (compR == 0) {
+				raiz = null;
+			}
 			if (compR < 0) {
 				pai.setRight(null);
 			} else {
@@ -189,6 +189,9 @@ public class TADArvore<T extends Comparable<T>> {
 
 		else if ((rm.getLeft() == null && rm.getRight() != null)) {
 			compR = pai.getConteudo().compareTo(rm.getConteudo());
+			if (compR == 0) {
+				raiz = pai.getRight();
+			}
 			if (compR < 0) {
 				pai.setRight(rm.getRight());
 			} else {
@@ -199,6 +202,9 @@ public class TADArvore<T extends Comparable<T>> {
 
 		else if (rm.getLeft() != null && rm.getRight() == null) {
 			compR = pai.getConteudo().compareTo(rm.getConteudo());
+			if (compR == 0) {
+				raiz = pai.getLeft();
+			}
 			if (compR < 0) {
 				pai.setRight(rm.getLeft());
 			} else {
@@ -220,12 +226,7 @@ public class TADArvore<T extends Comparable<T>> {
 	 * @return Profundidade do nó
 	 */
 	public int getProfundidade(Node<T> n) {
-		// fazer busca para achar n na árvore e poder pegar os filhos
-		// se o resultado da busca for null, return -1
-		// se o resultado não for null, faz o código abaixo
-		// substituir por esse if n == null, que só testa no caso de ser a raiz
-
-		if (n == null) {
+		if (n == null || raiz == null || buscarArvore(n.getConteudo()) == null) {
 			return -1;
 		}
 
@@ -249,7 +250,6 @@ public class TADArvore<T extends Comparable<T>> {
 	 * @return Profundidade do nó
 	 */
 	private int getProfundidade(Node<T> n, Node<T> pai) {
-
 		int compR = n.getConteudo().compareTo(pai.getConteudo());
 
 		if (compR == 0) {
@@ -267,7 +267,7 @@ public class TADArvore<T extends Comparable<T>> {
 	 * @return Altura do nó
 	 */
 	public int getAltura(Node<T> n) {
-		if (n == null) {
+		if (n == null || raiz == null) {
 			return -1;
 		} else {
 			n = this.buscarArvore(n.getConteudo());
@@ -287,14 +287,18 @@ public class TADArvore<T extends Comparable<T>> {
 
 	/**
 	 * Retorna o nó com menor valor da árvore
-	 * @return Nó com menor valor da árvore
+	 * @return Nó com menor valor da árvore ou null, se a árvore não tiver elementos
 	 */
 	public Node<T> getMenor() {
+		if (raiz == null)
+			return null;
+		
 		Node<T> n = this.raiz;
 
 		while (n.getLeft() != null) {
 			n = n.getLeft();
 		}
+		
 		return n;
 	}
 
@@ -304,19 +308,26 @@ public class TADArvore<T extends Comparable<T>> {
 	 * @return Nó com menor valor depois do nó "raiz"
 	 */
 	private Node<T> getMenor(Node<T> raiz) {
+		if (raiz == null)
+			return null;
+		
 		Node<T> n = raiz;
 
 		while (n.getLeft() != null) {
 			n = n.getLeft();
 		}
+		
 		return n;
 	}
 
 	/**
 	 * Retorna o nó com maior valor da árvore
-	 * @return Nó com maior valor da árvore
+	 * @return Nó com maior valor da árvore ou null, se a árvore não tiver elementos
 	 */
 	public Node<T> getMaior() {
+		if (raiz == null)
+			return null;
+		
 		Node<T> n = raiz;
 
 		while (n.getRight() != null) {
@@ -338,20 +349,24 @@ public class TADArvore<T extends Comparable<T>> {
 	}
 
 	/**
-	 * Imprime a árvore em notação pré-fixa
+	 * Wrapper para a função que imprime a árvore em notação pré-fixa
 	 */
 	public void imprimirPre() {
-		System.out.print("Arvore em pré-fixo: [\n");
-		imprimirPre(raiz);
+		//System.out.print("Arvore em pré-fixo: [\n");
+		System.out.print("[\n");
+		if (raiz != null)
+			imprimirPre(raiz);
 		System.out.println("]");
 	}
 
 	/**
-	 * Imprime a árvore em notação pós-fixa
+	 * Wrapper para a função que imprime a árvore em notação pós-fixa
 	 */
 	public void imprimirPos() {
-		System.out.print("Arvore em pós-fixo: [\n");
-		imprimirPos(raiz);
+		//System.out.print("Arvore em pós-fixo: [\n");
+		System.out.print("[\n");
+		if (raiz != null)
+			imprimirPos(raiz);
 		System.out.println("]");
 	}
 
