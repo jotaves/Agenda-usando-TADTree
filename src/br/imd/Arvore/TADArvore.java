@@ -1,5 +1,8 @@
 package br.imd.Arvore;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class TADArvore<T extends Comparable<T>> {
 	private Node<T> raiz;
 
@@ -23,71 +26,36 @@ public class TADArvore<T extends Comparable<T>> {
 
 		if (compR < 0 && pai.getLeft() == null) {
 			pai.setLeft(n);
-		}
-
-		else if (compR < 0 && pai.getLeft() != null) {
+		} else if (compR < 0 && pai.getLeft() != null) {
 			inserir(pai.getLeft(), n);
-		}
-
-		else if (compR > 0 && pai.getRight() == null) {
+		} else if (compR > 0 && pai.getRight() == null) {
 			pai.setRight(n);
-		}
-
-		else if (compR > 0 && pai.getRight() != null) {
+		} else if (compR > 0 && pai.getRight() != null) {
 			inserir(pai.getRight(), n);
 		}
 	}
 
 	public Node<T> buscarLargura(T obj) {
-		if (obj == null)
-			return null;
-		if(raiz.getConteudo().compareTo(obj) == 0) {
-			return raiz;
-		}
-		else {
-			Node<T> resultado = buscarLargura(raiz, obj);
-			return resultado;
-		}
-	}
-	
-	private Node<T> buscarLargura(Node<T> n, T obj) {
-		if (n == null) {
+		if (obj == null || this.raiz == null) {
 			return null;
 		}
-		// TODO
-		/*if (n.getConteudo().compareTo(obj) == 0) {
-			return n;
-		}*/
-		if (n.getLeft() != null && n.getLeft().getConteudo().compareTo(obj) == 0) {
-			return n.getLeft();
+
+		Queue<Node<T>> fila = new LinkedList<Node<T>>();
+		fila.add(this.raiz);
+
+		while (!fila.isEmpty()) {
+			if (obj.compareTo(fila.element().getConteudo()) == 0) {
+				return fila.element();
+			}
+			if (fila.element().getLeft() != null) {
+				fila.add(fila.element().getLeft());
+			}
+			if (fila.element().getRight() != null) {
+				fila.add(fila.element().getRight());
+			}
+			fila.remove();
 		}
-		if (n.getRight() != null && n.getRight().getConteudo().compareTo(obj) == 0) {
-			return n.getRight();
-		}
-		else {
-			Node<T> resultado = buscarLargura2(n.getLeft(), obj);
-			return resultado;
-		}
-	}
-	
-	private Node<T> buscarLargura2(Node<T> n, T obj) {
-		if (n == null) {
-			return null;
-		}
-		// TODO
-		/*if (n.getConteudo().compareTo(obj) == 0) {
-			return n;
-		}*/
-		if (n.getLeft() != null && n.getLeft().getConteudo().compareTo(obj) == 0) {
-			return n.getLeft();
-		}
-		if (n.getRight() != null && n.getRight().getConteudo().compareTo(obj) == 0) {
-			return n.getRight();
-		}
-		else {
-			Node<T> resultado = buscarLargura(n.get(), obj);
-			return resultado;
-		}		
+		return null;
 	}
 
 	public Node<T> buscarArvore(T obj) {
@@ -111,8 +79,9 @@ public class TADArvore<T extends Comparable<T>> {
 	}
 
 	public Node<T> buscarProfundidade(T obj) {
-		if (obj == null)
+		if (obj == null) {
 			return null;
+		}
 		if (raiz.getConteudo().compareTo(obj) == 0) {
 			return raiz;
 		} else {
@@ -246,10 +215,11 @@ public class TADArvore<T extends Comparable<T>> {
 			int ad = 1 + getAltura(n.getRight());
 
 			// retorna a maior altura entre as sub-árvores
-			if (ae < ad)
+			if (ae < ad) {
 				return ad;
-			else
+			} else {
 				return ae;
+			}
 		}
 	}
 
@@ -259,7 +229,6 @@ public class TADArvore<T extends Comparable<T>> {
 		while (n.getLeft() != null) {
 			n = n.getLeft();
 		}
-
 		return n;
 	}
 
@@ -269,7 +238,6 @@ public class TADArvore<T extends Comparable<T>> {
 		while (n.getLeft() != null) {
 			n = n.getLeft();
 		}
-
 		return n;
 	}
 
@@ -279,7 +247,6 @@ public class TADArvore<T extends Comparable<T>> {
 		while (n.getRight() != null) {
 			n = n.getRight();
 		}
-
 		return n;
 	}
 
