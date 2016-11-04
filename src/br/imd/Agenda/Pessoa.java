@@ -3,9 +3,10 @@ package br.imd.Agenda;
 import java.time.LocalDate;
 
 /**
- * 
- * @author pedroarthur-mf
+ * @author João Victor Bezerra Barboza
+ * @author Pedro Arthur Medeiros Fernandes
  *
+ * Classe que guarda as informações de um item da Agenda.
  */
 public class Pessoa implements Comparable<Pessoa> {
 	private String nome;
@@ -17,7 +18,7 @@ public class Pessoa implements Comparable<Pessoa> {
 	}
 
 	/**
-	 * 
+	 * Construtor da classe Pessoa.
 	 * @param nome
 	 * @param telefone
 	 * @param cpf
@@ -32,8 +33,8 @@ public class Pessoa implements Comparable<Pessoa> {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Retorna a idade da Pessoa
+	 * @return Idade
 	 */
 	public int getIdade() {
 		LocalDate now = LocalDate.now();
@@ -41,64 +42,64 @@ public class Pessoa implements Comparable<Pessoa> {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Retorna o nome da Pessoa
+	 * @return Nome
 	 */
 	public String getNome() {
 		return nome;
 	}
 
 	/**
-	 * 
-	 * @param nome
+	 * Altera o nome da Pessoa
+	 * @param nome Nome que será colocado
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Retorna o telefone da Pessoa
+	 * @return Telefone
 	 */
 	public String getTelefone() {
 		return telefone;
 	}
 
 	/**
-	 * 
-	 * @param telefone
+	 * Altera o telefone da Pessoa
+	 * @param telefone Telefone que será colocado
 	 */
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Retorna o CPF da Pessoa
+	 * @return CPF
 	 */
 	public String getCpf() {
 		return cpf;
 	}
 
 	/**
-	 * 
-	 * @param cpf
+	 * Altera o CPF da Pessoa
+	 * @param cpf CPF que será colocado
 	 */
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Retorna a data de aniversário da Pessoa
+	 * @return Data de aniversário
 	 */
 	public LocalDate getAniversario() {
 		return aniversario;
 	}
 
 	/**
-	 * 
-	 * @param aniversario
+	 * Altera a data de aniversário da Pessoa
+	 * @param aniversario Data de aniversário que será colocada
 	 */
 	public void setAniversario(LocalDate aniversario) {
 		this.aniversario = aniversario;
@@ -111,7 +112,8 @@ public class Pessoa implements Comparable<Pessoa> {
 	}
 
 	/**
-	 * 
+	 * Compara duas pessoas
+	 * @return ]-infinito, -1], se a < b. 0, se a == b. [1, infinito[, se a > b.
 	 */
 	public int compareTo(Pessoa p) {
 		return this.getNome().compareToIgnoreCase(p.getNome());

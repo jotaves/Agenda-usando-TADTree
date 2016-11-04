@@ -11,6 +11,15 @@ import br.imd.Agenda.Pessoa;
 import br.imd.Arvore.Node;
 import br.imd.Arvore.TADArvore;
 
+/**
+ * Classe de Teste da classe TDArvore
+ * 
+ * @author João Victor Bezerra Barboza
+ * @author Pedro Arthur Medeiros Fernandes
+ *
+ * @param <T>
+ */
+
 public class TesteArvore {
 	TADArvore<Pessoa> l = new TADArvore<Pessoa>();
 
