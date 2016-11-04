@@ -1,4 +1,5 @@
 package br.imd.Agenda;
+import br.imd.Arvore.Node;
 import br.imd.Arvore.TADArvore;
 import br.imd.Agenda.Pessoa;
 
@@ -21,10 +22,10 @@ public class Agenda {
 	}
 
 	public int buscarPessoa(String nome) {
-		Pessoa p = new Pessoa();
-		p.setNome(nome);
+		Node<Pessoa> p = new Node<Pessoa>(new Pessoa());
+		p.getConteudo().setNome(nome);
 		
-		// buscar p
+		lista.getProfundidade(p);
 		return 0;
 	}
 	
