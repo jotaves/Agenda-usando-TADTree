@@ -12,7 +12,10 @@ import br.imd.Agenda.Pessoa;
 
 public class TesteAgenda {
 	Agenda agenda = new Agenda();
-	
+	/**
+	 * 
+	 * @throws Exception
+	 */
 	@Before
 	public void setUp() throws Exception {
 		agenda.armazenaPessoa(new Pessoa("Borges", "3216-5498", "123456789-12", LocalDate.of(1990, 12, 15)));
@@ -24,12 +27,16 @@ public class TesteAgenda {
 		agenda.armazenaPessoa(new Pessoa("Azealia", "3216-5498", "123456789-12", LocalDate.of(1990, 12, 15)));
 		agenda.armazenaPessoa(new Pessoa("Angenor", "3216-5498", "123456789-12", LocalDate.of(1990, 12, 15)));
 	}
-
+/**
+ * 
+ */
 	@Test
 	public void testImprimeAgenda() {
 		agenda.imprimeAgenda();
 	}
-	
+	/**
+	 * 
+	 */
 	@Test
 	public void testRemovePessoa() {
 		assertEquals (true, agenda.removePessoa("Borges"));
@@ -64,7 +71,9 @@ public class TesteAgenda {
 		assertEquals (true, agenda.removePessoa("Angenor"));
 		assertEquals(-1, agenda.buscaPessoa("Angenor"));
 	}
-	
+	/**
+	 * 
+	 */
 	@Test
 	public void testBuscaPessoa() {
 		assertEquals(0, agenda.buscaPessoa("Borges"));
@@ -86,7 +95,9 @@ public class TesteAgenda {
 		assertEquals(2, agenda.buscaPessoa("Joao"));
 		assertEquals(0, agenda.buscaPessoa("Charles"));
 	}
-	
+	/**
+	 * 
+	 */
 	@Test
 	public void imprimePessoa() {
 		agenda.imprimePessoa("Joao");
