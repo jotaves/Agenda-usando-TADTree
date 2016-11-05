@@ -10,14 +10,16 @@ import org.junit.Test;
 import br.imd.Agenda.Agenda;
 import br.imd.Agenda.Pessoa;
 /**
- * 
- * @author pedroarthur-mf
+ * @author João Victor Bezerra Barboza
+ * @author Pedro Arthur Medeiros Fernandes
  *
+ * Classe de teste para a classe Agenda.
  */
 public class TesteAgenda {
 	Agenda agenda = new Agenda();
 	/**
-	 * 
+	 * Adiciona novas pessoas a Agenda a ser testada
+	 * .
 	 * @throws Exception
 	 */
 	@Before
@@ -32,14 +34,14 @@ public class TesteAgenda {
 		agenda.armazenaPessoa(new Pessoa("Angenor", "3216-5498", "123456789-12", LocalDate.of(1990, 12, 15)));
 	}
 /**
- * 
+ * Testa o método imprimirAgenda.
  */
 	@Test
 	public void testImprimeAgenda() {
 		agenda.imprimeAgenda();
 	}
 	/**
-	 * 
+	 * Testa o método removerPessoa para todos os casos.
 	 */
 	@Test
 	public void testRemovePessoa() {
@@ -76,7 +78,7 @@ public class TesteAgenda {
 		assertEquals(-1, agenda.buscaPessoa("Angenor"));
 	}
 	/**
-	 * 
+	 * Testa o método buscarPessoa.
 	 */
 	@Test
 	public void testBuscaPessoa() {
@@ -100,7 +102,7 @@ public class TesteAgenda {
 		assertEquals(0, agenda.buscaPessoa("Charles"));
 	}
 	/**
-	 * 
+	 * testa a classe imprimirPessoa.
 	 */
 	@Test
 	public void imprimePessoa() {
