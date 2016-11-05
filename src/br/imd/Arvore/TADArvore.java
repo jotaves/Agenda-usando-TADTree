@@ -10,6 +10,8 @@ import java.util.Queue;
  * @author Pedro Arthur Medeiros Fernandes
  *
  * @param <T>
+ *            objeto quealquer a ser armazenado dentro dos nós que formam a
+ *            árvore.
  */
 public class TADArvore<T extends Comparable<T>> {
 	private Node<T> raiz;
@@ -23,7 +25,9 @@ public class TADArvore<T extends Comparable<T>> {
 
 	/**
 	 * Wrapper para função de inserção de um nó na Árvore
-	 * @param t Nó que será inserido
+	 * 
+	 * @param t
+	 *            Nó que será inserido
 	 */
 	public void inserir(T t) {
 		Node<T> n = new Node<T>(t);
@@ -37,8 +41,11 @@ public class TADArvore<T extends Comparable<T>> {
 
 	/**
 	 * Inserção de um nó na Árvore
-	 * @param pai Candidato a pai do nó que será inserido
-	 * @param n Nó a ser inserido
+	 * 
+	 * @param pai
+	 *            Candidato a pai do nó que será inserido
+	 * @param n
+	 *            Nó a ser inserido
 	 */
 	private void inserir(Node<T> pai, Node<T> n) {
 		// modificado
@@ -58,6 +65,7 @@ public class TADArvore<T extends Comparable<T>> {
 	/**
 	 * 
 	 * @param obj
+	 *            O objeto que se procura dentro da árvore.
 	 * @return Nó do objeto que foi buscado ou null, caso não haja objeto
 	 */
 	public Node<T> buscarLargura(T obj) {
@@ -85,7 +93,9 @@ public class TADArvore<T extends Comparable<T>> {
 
 	/**
 	 * Busca na árvore
-	 * @param obj Objeto a ser buscado
+	 * 
+	 * @param obj
+	 *            Objeto a ser buscado
 	 * @return Nó do objeto que foi buscado ou null, caso não haja objeto
 	 */
 	public Node<T> buscarArvore(T obj) {
@@ -110,7 +120,9 @@ public class TADArvore<T extends Comparable<T>> {
 
 	/**
 	 * Wrapper para função de busca em profundidade de um objeto na árvore
-	 * @param obj Objeto a ser buscado
+	 * 
+	 * @param obj
+	 *            Objeto a ser buscado
 	 * @return Nó do objeto que foi buscado ou null, caso não haja objeto
 	 */
 	public Node<T> buscarProfundidade(T obj) {
@@ -130,8 +142,11 @@ public class TADArvore<T extends Comparable<T>> {
 
 	/**
 	 * Busca em profundidade de um objeto na árvore
-	 * @param n Nó a ser buscado
-	 * @param obj Objeto a ser buscado
+	 * 
+	 * @param n
+	 *            Nó a ser buscado
+	 * @param obj
+	 *            Objeto a ser buscado
 	 * @return Nó do objeto que foi buscado ou null, caso não haja objeto
 	 */
 	private Node<T> buscarProfundidade(Node<T> n, T obj) {
@@ -149,7 +164,9 @@ public class TADArvore<T extends Comparable<T>> {
 
 	/**
 	 * Remoção de um objeto da árvore
-	 * @param obj Objeto a ser removido
+	 * 
+	 * @param obj
+	 *            Objeto a ser removido
 	 * @return True, se o objeto foi removido; false, se não
 	 */
 	public boolean remover(T obj) {
@@ -171,7 +188,7 @@ public class TADArvore<T extends Comparable<T>> {
 		}
 
 		// elemento a ser removido não está na árvore
-		if (obj.compareTo(rm.getConteudo()) != 0) 
+		if (obj.compareTo(rm.getConteudo()) != 0)
 			return false;
 
 		else if (rm.getLeft() == null && rm.getRight() == null) {
@@ -222,7 +239,9 @@ public class TADArvore<T extends Comparable<T>> {
 
 	/**
 	 * Wrapper para a função que retorna a profundidade de um nó na árvore
-	 * @param n Nó a ser buscada a profundidade
+	 * 
+	 * @param n
+	 *            Nó a ser buscada a profundidade
 	 * @return Profundidade do nó
 	 */
 	public int getProfundidade(Node<T> n) {
@@ -245,8 +264,11 @@ public class TADArvore<T extends Comparable<T>> {
 
 	/**
 	 * Retorna a profundidade de um nó na árvore
-	 * @param n Nó a ser buscada a profundidade
-	 * @param pai Um nó qualquer anterior ao nó n (para busca da profundidade)
+	 * 
+	 * @param n
+	 *            Nó a ser buscada a profundidade
+	 * @param pai
+	 *            Um nó qualquer anterior ao nó n (para busca da profundidade)
 	 * @return Profundidade do nó
 	 */
 	private int getProfundidade(Node<T> n, Node<T> pai) {
@@ -263,7 +285,9 @@ public class TADArvore<T extends Comparable<T>> {
 
 	/**
 	 * Retorna a altura de um nó
-	 * @param n Nó que será buscada a altura
+	 * 
+	 * @param n
+	 *            Nó que será buscada a altura
 	 * @return Altura do nó
 	 */
 	public int getAltura(Node<T> n) {
@@ -287,47 +311,53 @@ public class TADArvore<T extends Comparable<T>> {
 
 	/**
 	 * Retorna o nó com menor valor da árvore
-	 * @return Nó com menor valor da árvore ou null, se a árvore não tiver elementos
+	 * 
+	 * @return Nó com menor valor da árvore ou null, se a árvore não tiver
+	 *         elementos
 	 */
 	public Node<T> getMenor() {
 		if (raiz == null)
 			return null;
-		
+
 		Node<T> n = this.raiz;
 
 		while (n.getLeft() != null) {
 			n = n.getLeft();
 		}
-		
+
 		return n;
 	}
 
 	/**
 	 * Retorna o nó com menor valor depois de um determinado nó
-	 * @param raiz Nó que fará papel de "raiz"
+	 * 
+	 * @param raiz
+	 *            Nó que fará papel de "raiz"
 	 * @return Nó com menor valor depois do nó "raiz"
 	 */
 	private Node<T> getMenor(Node<T> raiz) {
 		if (raiz == null)
 			return null;
-		
+
 		Node<T> n = raiz;
 
 		while (n.getLeft() != null) {
 			n = n.getLeft();
 		}
-		
+
 		return n;
 	}
 
 	/**
 	 * Retorna o nó com maior valor da árvore
-	 * @return Nó com maior valor da árvore ou null, se a árvore não tiver elementos
+	 * 
+	 * @return Nó com maior valor da árvore ou null, se a árvore não tiver
+	 *         elementos
 	 */
 	public Node<T> getMaior() {
 		if (raiz == null)
 			return null;
-		
+
 		Node<T> n = raiz;
 
 		while (n.getRight() != null) {
@@ -338,7 +368,9 @@ public class TADArvore<T extends Comparable<T>> {
 
 	/**
 	 * Imprime um nó da árvore na notação pré-fixa
-	 * @param n Nó a ser impresso
+	 * 
+	 * @param n
+	 *            Nó a ser impresso
 	 */
 	private void imprimirPre(Node<T> n) {
 		if (n != null) {
@@ -352,7 +384,7 @@ public class TADArvore<T extends Comparable<T>> {
 	 * Wrapper para a função que imprime a árvore em notação pré-fixa
 	 */
 	public void imprimirPre() {
-		//System.out.print("Arvore em pré-fixo: [\n");
+		// System.out.print("Arvore em pré-fixo: [\n");
 		System.out.print("[\n");
 		if (raiz != null)
 			imprimirPre(raiz);
@@ -363,7 +395,7 @@ public class TADArvore<T extends Comparable<T>> {
 	 * Wrapper para a função que imprime a árvore em notação pós-fixa
 	 */
 	public void imprimirPos() {
-		//System.out.print("Arvore em pós-fixo: [\n");
+		// System.out.print("Arvore em pós-fixo: [\n");
 		System.out.print("[\n");
 		if (raiz != null)
 			imprimirPos(raiz);
@@ -372,7 +404,9 @@ public class TADArvore<T extends Comparable<T>> {
 
 	/**
 	 * Imprime um nó da árvore em notação pós-fixa
-	 * @param n Nó a ser impresso
+	 * 
+	 * @param n
+	 *            Nó a ser impresso
 	 */
 	private void imprimirPos(Node<T> n) {
 		if (n != null) {

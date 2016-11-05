@@ -9,21 +9,22 @@ import org.junit.Test;
 
 import br.imd.Agenda.Agenda;
 import br.imd.Agenda.Pessoa;
+
 /**
+ * Classe de teste para a classe Agenda.
+ * 
  * @author João Victor Bezerra Barboza
  * @author Pedro Arthur Medeiros Fernandes
- *
- * Classe de teste para a classe Agenda.
  */
 public class TesteAgenda {
 	Agenda agenda = new Agenda();
+
 	/**
-	 * Adiciona novas pessoas a Agenda a ser testada
-	 * .
-	 * @throws Exception
+	 * Adiciona novas pessoas a Agenda a ser testada .
+	 *
 	 */
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		agenda.armazenaPessoa(new Pessoa("Borges", "3216-5498", "123456789-12", LocalDate.of(1990, 12, 15)));
 		agenda.armazenaPessoa(new Pessoa("Antonio", "3216-5498", "123456789-12", LocalDate.of(1990, 12, 15)));
 		agenda.armazenaPessoa(new Pessoa("Pedro", "3216-5498", "123456789-12", LocalDate.of(1990, 12, 15)));
@@ -33,50 +34,53 @@ public class TesteAgenda {
 		agenda.armazenaPessoa(new Pessoa("Azealia", "3216-5498", "123456789-12", LocalDate.of(1990, 12, 15)));
 		agenda.armazenaPessoa(new Pessoa("Angenor", "3216-5498", "123456789-12", LocalDate.of(1990, 12, 15)));
 	}
-/**
- * Testa o método imprimirAgenda.
- */
+
+	/**
+	 * Testa o método imprimirAgenda.
+	 */
 	@Test
 	public void testImprimeAgenda() {
 		agenda.imprimeAgenda();
 	}
+
 	/**
 	 * Testa o método removerPessoa para todos os casos.
 	 */
 	@Test
 	public void testRemovePessoa() {
-		assertEquals (true, agenda.removePessoa("Borges"));
+		assertEquals(true, agenda.removePessoa("Borges"));
 		assertEquals(-1, agenda.buscaPessoa("Borges"));
-		
-		assertEquals (false, agenda.removePessoa("Marilia"));
-		
-		assertEquals (false, agenda.removePessoa("Buguinho"));
-		
-		assertEquals (true, agenda.removePessoa("Azealia"));
+
+		assertEquals(false, agenda.removePessoa("Marilia"));
+
+		assertEquals(false, agenda.removePessoa("Buguinho"));
+
+		assertEquals(true, agenda.removePessoa("Azealia"));
 		assertEquals(-1, agenda.buscaPessoa("Azealia"));
-		
-		assertEquals (true, agenda.removePessoa("Antonio"));
+
+		assertEquals(true, agenda.removePessoa("Antonio"));
 		assertEquals(-1, agenda.buscaPessoa("Antonio"));
-		
-		assertEquals (false, agenda.removePessoa("Antonio"));
-		
-		assertEquals (true, agenda.removePessoa("Maria"));
+
+		assertEquals(false, agenda.removePessoa("Antonio"));
+
+		assertEquals(true, agenda.removePessoa("Maria"));
 		assertEquals(-1, agenda.buscaPessoa("Maria"));
-		
-		assertEquals (false, agenda.removePessoa("Fernanda"));
-		
-		assertEquals (true, agenda.removePessoa("Joao"));
+
+		assertEquals(false, agenda.removePessoa("Fernanda"));
+
+		assertEquals(true, agenda.removePessoa("Joao"));
 		assertEquals(-1, agenda.buscaPessoa("Joao"));
-		
-		assertEquals (true, agenda.removePessoa("Pedro"));
+
+		assertEquals(true, agenda.removePessoa("Pedro"));
 		assertEquals(-1, agenda.buscaPessoa("Pedro"));
-		
-		assertEquals (true, agenda.removePessoa("Charles"));
+
+		assertEquals(true, agenda.removePessoa("Charles"));
 		assertEquals(-1, agenda.buscaPessoa("Charles"));
-		
-		assertEquals (true, agenda.removePessoa("Angenor"));
+
+		assertEquals(true, agenda.removePessoa("Angenor"));
 		assertEquals(-1, agenda.buscaPessoa("Angenor"));
 	}
+
 	/**
 	 * Testa o método buscarPessoa.
 	 */
@@ -90,9 +94,9 @@ public class TesteAgenda {
 		assertEquals(2, agenda.buscaPessoa("Joao"));
 		assertEquals(3, agenda.buscaPessoa("Charles"));
 		assertEquals(-1, agenda.buscaPessoa("Catarina"));
-		
+
 		assertEquals(true, agenda.removePessoa("Borges"));
-		
+
 		assertEquals(-1, agenda.buscaPessoa("Borges"));
 		assertEquals(1, agenda.buscaPessoa("Pedro"));
 		assertEquals(1, agenda.buscaPessoa("Antonio"));
@@ -101,6 +105,7 @@ public class TesteAgenda {
 		assertEquals(2, agenda.buscaPessoa("Joao"));
 		assertEquals(0, agenda.buscaPessoa("Charles"));
 	}
+
 	/**
 	 * testa a classe imprimirPessoa.
 	 */
