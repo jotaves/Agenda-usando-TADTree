@@ -9,7 +9,11 @@ import org.junit.Test;
 
 import br.imd.Agenda.Agenda;
 import br.imd.Agenda.Pessoa;
-
+/**
+ * 
+ * @author pedroarthur-mf
+ *
+ */
 public class TesteAgenda {
 	Agenda agenda = new Agenda();
 	/**
